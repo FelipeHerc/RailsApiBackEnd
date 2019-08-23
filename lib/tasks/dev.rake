@@ -31,5 +31,13 @@ namespace :dev do
         company: Company.order('RANDOM()').first
       )
     end
+
+    p 'criando status...'
+    descriptions = ['Disponível', 'Ocupado', 'Manutenção', 'Desativado/Cancelado']
+    descriptions.each do |description|
+      Stat.create!(
+        description: description
+      )
+    end
   end
 end

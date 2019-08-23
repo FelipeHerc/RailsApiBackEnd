@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :equips
+  resources :cels
+  resources :chips
+  resources :notebooks
+  resources :stats
   resources :companies
   resources :sectors
   resources :owners

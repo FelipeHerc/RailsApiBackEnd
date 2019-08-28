@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :possesions
   resources :equips
   resources :cels
   resources :chips

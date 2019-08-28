@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_23_032210) do
+ActiveRecord::Schema.define(version: 2019_08_24_000654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 2019_08_23_032210) do
     t.index ["sector_id"], name: "index_owners_on_sector_id"
   end
 
+  create_table "possesions", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.bigint "equip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equip_id"], name: "index_possesions_on_equip_id"
+    t.index ["owner_id"], name: "index_possesions_on_owner_id"
+  end
+
   create_table "sectors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -94,4 +103,6 @@ ActiveRecord::Schema.define(version: 2019_08_23_032210) do
   add_foreign_key "equips", "chips"
   add_foreign_key "equips", "notebooks"
   add_foreign_key "notebooks", "stats"
+  add_foreign_key "possesions", "equips"
+  add_foreign_key "possesions", "owners"
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ChipsController < ApplicationController
-  before_action :set_chip, only: [:show, :update, :destroy]
+  before_action :set_chip, only: %i[show update destroy]
 
   # GET /chips
   def index
@@ -18,7 +20,7 @@ class ChipsController < ApplicationController
     @chip = Chip.new(chip_params)
 
     if @chip.save
-      @equip = Equip.new(:chip_id => @chip.id)
+      @equip = Equip.new(chip_id: @chip.id)
       if @equip.save
         render json: [@chip, @equip], status: :created, location: @chip, root: true
       else
@@ -45,13 +47,14 @@ class ChipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chip
-      @chip = Chip.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def chip_params
-      params.require(:chip).permit(:stat_id, :operator, :ddd, :phoneNumber, :value)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_chip
+    @chip = Chip.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def chip_params
+    params.require(:chip).permit(:stat_id, :operator, :ddd, :phoneNumber, :value)
+  end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class NotebooksController < ApplicationController
-  before_action :set_notebook, only: [:show, :update, :destroy]
+  before_action :set_notebook, only: %i[show update destroy]
 
   # GET /notebooks
   def index
@@ -18,7 +20,7 @@ class NotebooksController < ApplicationController
     @notebook = Notebook.new(notebook_params)
 
     if @notebook.save
-      @equip = Equip.new(:notebook_id => @notebook.id)
+      @equip = Equip.new(notebook_id: @notebook.id)
 
       if @equip.save
         render json: [@notebook, @equip], status: :created, location: @notebook, root: true
@@ -46,13 +48,14 @@ class NotebooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_notebook
-      @notebook = Notebook.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def notebook_params
-      params.require(:notebook).permit(:stat_id, :brand, :model, :serialNumber)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_notebook
+    @notebook = Notebook.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def notebook_params
+    params.require(:notebook).permit(:stat_id, :brand, :model, :serialNumber)
+  end
 end

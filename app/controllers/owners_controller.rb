@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class OwnersController < ApplicationController
-  before_action :set_owner, only: [:show, :update, :destroy]
+  before_action :set_owner, only: %i[show update destroy]
 
   # GET /owners
   def index
     @owners = Owner.all
 
-    render json: @owners, include: [:company, :sector]
+    render json: @owners, include: %i[company sector]
   end
 
   # GET /owners/1
   def show
-    render json: @owner, include: [:company, :sector]
+    render json: @owner, include: %i[company sector]
   end
 
   # POST /owners
@@ -39,13 +41,14 @@ class OwnersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_owner
-      @owner = Owner.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def owner_params
-      params.require(:owner).permit(:name, :cpf, :sector, :company)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_owner
+    @owner = Owner.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def owner_params
+    params.require(:owner).permit(:name, :cpf, :sector, :company)
+  end
 end

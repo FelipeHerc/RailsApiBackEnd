@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class EquipsController < ApplicationController
-  before_action :set_equip, only: [:show, :update, :destroy]
+  before_action :set_equip, only: %i[show update destroy]
 
   # GET /equips
   def index
     @equips = Equip.all
 
-    render json: @equips, include: [:notebook, :chip, :cel]
+    render json: @equips, include: %i[notebook chip cel]
   end
 
   # GET /equips/1
@@ -39,13 +41,14 @@ class EquipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_equip
-      @equip = Equip.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def equip_params
-      params.require(:equip).permit(:notebook_id, :chip_id, :cel_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_equip
+    @equip = Equip.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def equip_params
+    params.require(:equip).permit(:notebook_id, :chip_id, :cel_id)
+  end
 end

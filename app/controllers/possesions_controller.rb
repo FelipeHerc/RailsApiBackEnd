@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class PossesionsController < ApplicationController
-  before_action :set_possesion, only: [:show, :update, :destroy]
+  before_action :set_possesion, only: %i[show update destroy]
 
   # GET /possesions
   def index
     @possesions = Possesion.all
 
-    render json: @possesions, include: [:owner, :equip]
+    render json: @possesions, include: %i[owner equip]
   end
 
   # GET /possesions/1
   def show
-    render json: @possesion, include: [:owner, :equip]
+    render json: @possesion, include: %i[owner equip]
   end
 
   # POST /possesions
@@ -39,13 +41,14 @@ class PossesionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_possesion
-      @possesion = Possesion.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def possesion_params
-      params.require(:possesion).permit(:owner_id, :equip_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_possesion
+    @possesion = Possesion.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def possesion_params
+    params.require(:possesion).permit(:owner_id, :equip_id)
+  end
 end

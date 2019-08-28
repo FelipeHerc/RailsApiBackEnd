@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EquipSerializer < ActiveModel::Serializer
   attributes :id
   belongs_to :notebook, optional: true

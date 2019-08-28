@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OwnerSerializer < ActiveModel::Serializer
   attributes :id, :name, :cpf
   belongs_to :company, optional: true

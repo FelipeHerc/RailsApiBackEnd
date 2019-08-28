@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class StatsController < ApplicationController
-  before_action :set_stat, only: [:show, :update, :destroy]
+  before_action :set_stat, only: %i[show update destroy]
 
   # GET /stats
   def index
@@ -39,13 +41,14 @@ class StatsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stat
-      @stat = Stat.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def stat_params
-      params.require(:stat).permit(:description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stat
+    @stat = Stat.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def stat_params
+    params.require(:stat).permit(:description)
+  end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CelsController < ApplicationController
-  before_action :set_cel, only: [:show, :update, :destroy]
+  before_action :set_cel, only: %i[show update destroy]
 
   # GET /cels
   def index
@@ -18,7 +20,7 @@ class CelsController < ApplicationController
     @cel = Cel.new(cel_params)
 
     if @cel.save
-      @equip = Equip.new(:cel_id => @cel.id)
+      @equip = Equip.new(cel_id: @cel.id)
 
       if @equip.save
         render json: [@cel, @equip], status: :created, location: @cel, root: true
@@ -46,13 +48,14 @@ class CelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cel
-      @cel = Cel.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def cel_params
-      params.require(:cel).permit(:stat_id, :brand, :model, :imei1, :imei2)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cel
+    @cel = Cel.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def cel_params
+    params.require(:cel).permit(:stat_id, :brand, :model, :imei1, :imei2)
+  end
 end

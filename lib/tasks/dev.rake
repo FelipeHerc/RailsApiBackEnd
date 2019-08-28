@@ -22,7 +22,7 @@ namespace :dev do
     end
 
     p 'criando owners...'
-    100.times do |_i|
+    100.times do |i|
       Owner.create!(
         name: Faker::Name.name,
         cpf: Faker::CPF.pretty,
@@ -37,6 +37,55 @@ namespace :dev do
     descriptions.each do |description|
       Stat.create!(
         description: description
+      )
+    end
+
+    p 'criando notebooks...'
+    50.times do |i|
+    notebook = Notebook.create!(
+      brand: Faker::Games::Dota.hero,
+      model: Faker::Games::Dota.item,
+      serialNumber: Faker::Number.number(digits: 15),
+      stat: Stat.order('RANDOM()').first
+    )
+    Equip.create!(
+      notebook_id: notebook.id
+    )
+    end
+
+    p 'criando chips...'
+    50.times do |i|
+    chip = Chip.create!(
+      operator: Faker::Games::Pokemon.name,
+      ddd: rand(100),
+      phoneNumber: Faker::PhoneNumber.cell_phone_with_country_code,
+      value: rand(10),
+      stat: Stat.order('RANDOM()').first
+    )
+    Equip.create!(
+      chip_id: chip.id
+    )
+    end
+
+    p 'criando cels...'
+    50.times do |i|
+    cel = Cel.create!(
+      brand: Faker::Books::Lovecraft.deity,
+      model: Faker::Books::Lovecraft.fhtagn,
+      imei1: Faker::Number.number(digits: 15),
+      imei2: Faker::Number.number(digits: 15),
+      stat: Stat.order('RANDOM()').first
+    )
+    Equip.create!(
+      cel_id: cel.id
+    )
+    end
+    
+    p 'criando possesions...'
+    100.times do |i|
+      Possesion.create!(
+        owner_id: Owner.order('RANDOM()').first.id,
+        equip_id: Equip.order('RANDOM()').first.id
       )
     end
   end

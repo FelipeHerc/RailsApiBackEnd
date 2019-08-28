@@ -5,12 +5,12 @@ class ChipsController < ApplicationController
   def index
     @chips = Chip.all
 
-    render json: @chips
+    render json: @chips, include: [:stat]
   end
 
   # GET /chips/1
   def show
-    render json: @chip
+    render json: @chip, include: [:stat]
   end
 
   # POST /chips

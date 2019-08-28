@@ -5,12 +5,12 @@ class CelsController < ApplicationController
   def index
     @cels = Cel.all
 
-    render json: @cels
+    render json: @cels, include: [:stat]
   end
 
   # GET /cels/1
   def show
-    render json: @cel
+    render json: @cel, include: [:stat]
   end
 
   # POST /cels

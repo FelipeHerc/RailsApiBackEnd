@@ -5,12 +5,12 @@ class PossesionsController < ApplicationController
   def index
     @possesions = Possesion.all
 
-    render json: @possesions
+    render json: @possesions, include: [:owner, :equip]
   end
 
   # GET /possesions/1
   def show
-    render json: @possesion
+    render json: @possesion, include: [:owner, :equip]
   end
 
   # POST /possesions

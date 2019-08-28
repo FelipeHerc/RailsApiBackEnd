@@ -5,7 +5,7 @@ class EquipsController < ApplicationController
   def index
     @equips = Equip.all
 
-    render json: @equips
+    render json: @equips, include: [:notebook, :chip, :cel]
   end
 
   # GET /equips/1

@@ -5,12 +5,12 @@ class OwnersController < ApplicationController
   def index
     @owners = Owner.all
 
-    render json: @owners
+    render json: @owners, include: [:company, :sector]
   end
 
   # GET /owners/1
   def show
-    render json: @owner
+    render json: @owner, include: [:company, :sector]
   end
 
   # POST /owners

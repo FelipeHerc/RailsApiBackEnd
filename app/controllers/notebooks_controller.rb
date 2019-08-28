@@ -5,12 +5,12 @@ class NotebooksController < ApplicationController
   def index
     @notebooks = Notebook.all
 
-    render json: @notebooks
+    render json: @notebooks, include: [:stat]
   end
 
   # GET /notebooks/1
   def show
-    render json: @notebook
+    render json: @notebook, include: [:stat]
   end
 
   # POST /notebooks

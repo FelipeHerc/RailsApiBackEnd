@@ -44,11 +44,20 @@ class StatsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_stat
-    @stat = Stat.find(params[:id])
+    @stat = Stat.find_by(id: params[:id])
+    render json: not_found_message, status: :not_found if @stat.nil?
   end
 
   # Only allow a trusted parameter "white list" through.
   def stat_params
     params.require(:stat).permit(:description)
+  end
+
+  def not_found_message
+    {
+      "data": [
+        "message": "Registro não encontrado"
+      ]
+    }
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'ffaker'
 
 describe SectorsController, type: :controller do
-  context 'faz um get em sector' do
+  describe 'faz um get em sector' do
     context 'em todos os registros' do
       it 'e retorna status 200' do
         get :index

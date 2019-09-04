@@ -44,11 +44,20 @@ class OwnersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_owner
-    @owner = Owner.find(params[:id])
+    @owner = Owner.find_by(id: params[:id])
+    render json: not_found_message, status: :not_found if @owner.nil?
   end
 
   # Only allow a trusted parameter "white list" through.
   def owner_params
     params.require(:owner).permit(:name, :cpf, :sector, :company)
+  end
+
+  def not_found_message
+    {
+      "data": [
+        "message": "Registro não encontrado"
+      ]
+    }
   end
 end

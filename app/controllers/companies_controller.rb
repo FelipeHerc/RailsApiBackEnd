@@ -44,11 +44,20 @@ class CompaniesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_company
-    @company = Company.find(params[:id])
+    @company = Company.find_by(id: params[:id])
+    render json: not_found_message, status: :not_found if @company.nil?
   end
 
   # Only allow a trusted parameter "white list" through.
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def not_found_message
+    {
+      "data": [
+        "message": "Registro não encontrado"
+      ]
+    }
   end
 end

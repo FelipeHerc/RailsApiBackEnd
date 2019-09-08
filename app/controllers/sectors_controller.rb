@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SectorsController < ApplicationController
-  before_action :set_sector, only: %i[show update destroy]
+  before_action :set_sector, only: %i[show update destroy], :authenticate_user!
 
   # GET /sectors
   def index

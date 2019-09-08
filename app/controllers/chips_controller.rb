@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChipsController < ApplicationController
-  before_action :set_chip, only: %i[show update destroy]
+  before_action :set_chip, only: %i[show update destroy], :authenticate_user!
 
   # GET /chips
   def index

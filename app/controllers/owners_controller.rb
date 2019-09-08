@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OwnersController < ApplicationController
-  before_action :set_owner, only: %i[show update destroy]
+  before_action :set_owner, only: %i[show update destroy], :authenticate_user!
 
   # GET /owners
   def index

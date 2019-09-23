@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class NotebooksController < ApplicationController
-  before_action :set_notebook, only: %i[show update destroy], :authenticate_user!
+  before_action :set_notebook, only: %i[show update destroy]#, :authenticate_user!
 
   # GET /notebooks
   def index

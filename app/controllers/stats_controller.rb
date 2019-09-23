@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StatsController < ApplicationController
-  before_action :set_stat, only: %i[show update destroy], :authenticate_user!
+  before_action :set_stat, only: %i[show update destroy]#, :authenticate_user!
 
   # GET /stats
   def index

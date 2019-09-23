@@ -88,5 +88,58 @@ namespace :dev do
         equip_id: Equip.order('RANDOM()').first.id
       )
     end
+
+    p 'criando access...'
+    Access.create!(
+      description: 'Área remota'
+    )
+    Access.create!(
+      description: 'ANM'
+    )
+    Access.create!(
+      description: 'VPN'
+    )
+    Access.create!(
+      description: 'Jera'
+    )
+    Access.create!(
+      description: 'GLPI'
+    )
+    Access.create!(
+      description: 'Número de ramal'
+    )
+    Access.create!(
+      description: '@outcenter'
+    )
+    Access.create!(
+      description: '@grupocenter'
+    )
+    Access.create!(
+      description: '@avos'
+    )
+    Access.create!(
+      description: 'Boleto Verde'
+    )
+    Access.create!(
+      description: 'Pagcenter'
+    )
+    Access.create!(
+      description: 'CRM'
+    )
+    Access.create!(
+      description: 'Metrics'
+    )
+    Access.create!(
+      description: 'Gestão RH'
+    )
+    Access.create!(
+      description: 'PSI'
+    )
+    Access.create!(
+      description: 'Elastix'
+    )
+    Access.create!(
+      description: 'Terminal 6'
+    )
   end
 end

@@ -17,7 +17,14 @@ class OwnersController < ApplicationController
 
   # POST /owners
   def create
-    @owner = Owner.new(owner_params)
+    p owner_params[:email]
+    @owner = Owner.new(
+      name: owner_params[:name], 
+      cpf: owner_params[:cpf],
+      email: owner_params[:email],
+      sector_id: owner_params[:sector_id],
+      company_id: owner_params[:company_id]
+    )
 
     if @owner.save
       render json: @owner, status: :created, location: @owner
@@ -50,7 +57,7 @@ class OwnersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def owner_params
-    params.require(:owner).permit(:name, :cpf, :sector, :company)
+    params.require(:owner).permit(:name, :cpf, :sector, :company, :email, :sector_id, :company_id)
   end
 
   def not_found_message

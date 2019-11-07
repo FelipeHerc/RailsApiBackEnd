@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frosetupzen_string_literal: true
 
 require 'cpf_faker'
 
@@ -71,7 +71,7 @@ namespace :dev do
     50.times do |i|
     cel = Cel.create!(
       brand: Faker::Books::Lovecraft.deity,
-      model: Faker::Books::Lovecraft.fhtagn,
+      model: Faker::Creature::Dog.breed,
       imei1: Faker::Number.number(digits: 15),
       imei2: Faker::Number.number(digits: 15),
       stat: Stat.order('RANDOM()').first
@@ -80,7 +80,7 @@ namespace :dev do
       cel_id: cel.id
     )
     end
-    
+
     p 'criando possesions...'
     100.times do |i|
       Possesion.create!(

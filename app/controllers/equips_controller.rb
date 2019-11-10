@@ -5,7 +5,7 @@ class EquipsController < ApplicationController
 
   # GET /equips
   def index
-    @equips = Equip.all
+    @equips = filter_equips
 
     render json: @equips, include: %i[notebook chip cel]
   end
@@ -47,8 +47,11 @@ class EquipsController < ApplicationController
     @equip = Equip.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
-  def equip_params
-    params.require(:equip).permit(:notebook_id, :chip_id, :cel_id)
+  def filter_equips
+    return Equip.all unless params[:status]
+
+    equip_list = Equip.joins(:cel).where(cels: {stat_id: params[:status]})
+    equip_list + Equip.joins(:chip).where(chips: {stat_id: params[:status]})
+    equip_list + Equip.joins(:notebook).where(notebooks: {stat_id: params[:status]})
   end
 end

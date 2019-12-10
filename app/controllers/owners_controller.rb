@@ -23,7 +23,8 @@ class OwnersController < ApplicationController
       cpf: owner_params[:cpf],
       email: owner_params[:email],
       sector_id: owner_params[:sector_id],
-      company_id: owner_params[:company_id]
+      company_id: owner_params[:company_id],
+      city_id: owner_params[:city_id]
     )
 
     if @owner.save
@@ -57,7 +58,7 @@ class OwnersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def owner_params
-    params.require(:owner).permit(:name, :cpf, :sector, :company, :email, :sector_id, :company_id)
+    params.require(:owner).permit(:name, :cpf, :sector, :company, :email, :sector_id, :company_id, :city_id)
   end
 
   def not_found_message

@@ -8,6 +8,7 @@ class CreateOwners < ActiveRecord::Migration[5.2]
       t.string :email
       t.references :sector
       t.references :company
+      t.references :city
 
       t.timestamps
     end

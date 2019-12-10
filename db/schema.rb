@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_220436) do
+ActiveRecord::Schema.define(version: 2019_12_07_024040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,16 +41,30 @@ ActiveRecord::Schema.define(version: 2019_09_28_220436) do
 
   create_table "chips", force: :cascade do |t|
     t.bigint "stat_id"
+    t.bigint "costcenter_id"
     t.string "operator"
     t.string "ddd"
     t.string "phoneNumber"
     t.money "value", scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["costcenter_id"], name: "index_chips_on_costcenter_id"
     t.index ["stat_id"], name: "index_chips_on_stat_id"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "costcenters", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -83,8 +97,10 @@ ActiveRecord::Schema.define(version: 2019_09_28_220436) do
     t.string "email"
     t.bigint "sector_id"
     t.bigint "company_id"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_owners_on_city_id"
     t.index ["company_id"], name: "index_owners_on_company_id"
     t.index ["sector_id"], name: "index_owners_on_sector_id"
   end
@@ -137,6 +153,7 @@ ActiveRecord::Schema.define(version: 2019_09_28_220436) do
   end
 
   add_foreign_key "cels", "stats"
+  add_foreign_key "chips", "costcenters"
   add_foreign_key "chips", "stats"
   add_foreign_key "equips", "cels"
   add_foreign_key "equips", "chips"

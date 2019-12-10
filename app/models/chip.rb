@@ -2,4 +2,5 @@
 
 class Chip < ApplicationRecord
   belongs_to :stat
+  belongs_to :costcenter
 end

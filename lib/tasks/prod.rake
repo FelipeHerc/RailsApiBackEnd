@@ -5,6 +5,23 @@ require 'cpf_faker'
 namespace :prod do
   desc 'configura ambiente de dev'
   task setup: :environment do
+
+    p 'criando centros de custo...'
+    centers = ['Infra/Redes', 'Projetos', 'Instalação']
+    centers.each do |center| 
+      Costcenter.create!(
+        name: center
+      )
+    end
+
+    p 'criando cidades...'
+    cities = ['Bahia', 'Poços de Caldas', 'Botelhos']
+    cities.each do |city|
+      City.create!(
+        name: city
+      )
+    end
+
     p 'criando setores...'
     sectors = %w[TI Comercial Dev Adm]
     sectors.each do |sector|

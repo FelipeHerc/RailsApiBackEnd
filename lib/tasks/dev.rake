@@ -5,11 +5,28 @@ require 'cpf_faker'
 namespace :dev do
   desc 'configura ambiente de dev'
   task setup: :environment do
+
+    p 'criando centros de custo...'
+    centers = ['Infra/Redes', 'Projetos', 'Instalação']
+    centers.each do |center| 
+      Costcenter.create!(
+        name: center
+      )
+    end
+
     p 'criando setores...'
     sectors = %w[TI Comercial Dev Adm]
     sectors.each do |sector|
       Sector.create!(
         name: sector
+      )
+    end
+
+    p 'criando cidades...'
+    cities = ['Bahia', 'Poços de Caldas', 'Botelhos']
+    cities.each do |city|
+      City.create!(
+        name: city
       )
     end
 
@@ -28,7 +45,8 @@ namespace :dev do
         cpf: Faker::CPF.pretty,
         email: Faker::Internet.email,
         sector: Sector.order('RANDOM()').first,
-        company: Company.order('RANDOM()').first
+        company: Company.order('RANDOM()').first,
+        city: City.order('RANDOM()').first
       )
     end
 
@@ -60,7 +78,8 @@ namespace :dev do
       ddd: rand(100),
       phoneNumber: Faker::PhoneNumber.cell_phone_with_country_code,
       value: rand(10),
-      stat: Stat.order('RANDOM()').first
+      stat: Stat.order('RANDOM()').first,
+      costcenter: Costcenter.order('RANDOM()').first
     )
     Equip.create!(
       chip_id: chip.id

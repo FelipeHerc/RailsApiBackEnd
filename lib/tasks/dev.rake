@@ -38,18 +38,6 @@ namespace :dev do
       )
     end
 
-    p 'criando owners...'
-    100.times do |i|
-      Owner.create!(
-        name: Faker::Name.name,
-        cpf: Faker::CPF.pretty,
-        email: Faker::Internet.email,
-        sector: Sector.order('RANDOM()').first,
-        company: Company.order('RANDOM()').first,
-        city: City.order('RANDOM()').first
-      )
-    end
-
     p 'criando status...'
     descriptions = ['Disponível', 'Ocupado', 'Manutenção', 'Desativado/Cancelado']
     descriptions.each do |description|
@@ -98,14 +86,6 @@ namespace :dev do
     Equip.create!(
       cel_id: cel.id
     )
-    end
-
-    p 'criando possesions...'
-    100.times do |i|
-      Possesion.create!(
-        owner_id: Owner.order('RANDOM()').first.id,
-        equip_id: Equip.order('RANDOM()').first.id
-      )
     end
 
     p 'criando access...'
@@ -160,5 +140,26 @@ namespace :dev do
     Access.create!(
       description: 'Terminal 6'
     )
+
+    p 'criando owners...'
+    100.times do |i|
+      Owner.create!(
+        name: Faker::Name.name,
+        cpf: Faker::CPF.pretty,
+        email: Faker::Internet.email,
+        sector: Sector.order('RANDOM()').first,
+        company: Company.order('RANDOM()').first,
+        city: City.order('RANDOM()').first,
+        access: Access.find([rand(1..17), rand(1..17), rand(1..17)])
+      )
+    end
+
+    p 'criando possesions...'
+    100.times do |i|
+      Possesion.create!(
+        owner_id: Owner.order('RANDOM()').first.id,
+        equip_id: Equip.order('RANDOM()').first.id
+      )
+    end
   end
 end

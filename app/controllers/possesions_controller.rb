@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PossesionsController < ApplicationController
-  before_action :set_possesion, only: %i[show update destroy]#, :authenticate_user!
+  acts_as_token_authentication_handler_for User
+  before_action :set_possesion, only: %i[show update destroy]
 
   # GET /possesions
   def index

@@ -181,6 +181,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
+    simple_token_authentication (1.17.0)
+      actionmailer (>= 3.2.6, < 7)
+      actionpack (>= 3.2.6, < 7)
+      devise (>= 3.2, < 6)
     solargraph (0.37.2)
       backport (~> 1.1)
       bundler (>= 1.17.2)
@@ -237,13 +241,14 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rspec-rails
   rubocop
+  simple_token_authentication (~> 1.0)
   solargraph
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.6.4p104
 
 BUNDLED WITH
    1.17.2

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CelsController < ApplicationController
+  acts_as_token_authentication_handler_for User
   before_action :set_cel, only: %i[show update destroy]
 
   # GET /cels

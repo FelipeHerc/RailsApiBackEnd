@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class NotebooksController < ApplicationController
-  before_action :set_notebook, only: %i[show update destroy]#, :authenticate_user!
+  acts_as_token_authentication_handler_for User
+  before_action :set_notebook, only: %i[show update destroy]
 
   # GET /notebooks
   def index

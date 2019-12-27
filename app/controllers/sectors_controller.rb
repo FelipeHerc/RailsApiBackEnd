@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class SectorsController < ApplicationController
-  before_action :set_sector, only: %i[show update destroy]#, :authenticate_user!
+  acts_as_token_authentication_handler_for User
+  before_action :set_sector, only: %i[show update destroy]
 
   # GET /sectors
   def index

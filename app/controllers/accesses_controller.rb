@@ -1,4 +1,5 @@
 class AccessesController < ApplicationController
+  acts_as_token_authentication_handler_for User
   before_action :set_access, only: [:show, :update, :destroy]
 
   # GET /accesses

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class OwnersController < ApplicationController
-  before_action :set_owner, only: %i[show update destroy]#, :authenticate_user!
+  acts_as_token_authentication_handler_for User
+  before_action :set_owner, only: %i[show update destroy]
 
   # GET /owners
   def index
@@ -18,7 +19,7 @@ class OwnersController < ApplicationController
   # POST /owners
   def create
     @owner = Owner.new(
-      name: owner_params[:name], 
+      name: owner_params[:name],
       cpf: owner_params[:cpf],
       email: owner_params[:email],
       sector_id: owner_params[:sector_id],

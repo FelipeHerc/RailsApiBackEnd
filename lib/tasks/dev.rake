@@ -6,6 +6,13 @@ namespace :dev do
   desc 'configura ambiente de dev'
   task setup: :environment do
 
+    p 'criando usuario mestre, detentor de todo o conhecimento do kosmo, ou como alguns dizem: kosm...'
+    User.create!(
+      email: 'felipe@herc.com',
+      password: '12341234',
+      password_confirmation: '12341234'
+    )
+
     p 'criando centros de custo...'
     centers = ['Infra/Redes', 'Projetos', 'Instalação']
     centers.each do |center| 

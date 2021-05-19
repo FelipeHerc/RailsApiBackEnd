@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'faker'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'solargraph'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'cpf_faker'
